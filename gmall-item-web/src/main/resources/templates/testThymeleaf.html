@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/testThymeleaf1.css">
+
+</head>
+<body>
+取值：
+<input th:value="${hello}"/>
+<p th:text="${hello}"></p>
+循环：
+<input th:each="item:${list}" th:value="${item}">
+判断：
+<input th:value="exist" th:if="${1==1}"><br />
+<input type="checkbox" th:checked="${1==1}"><br />
+<!-- 三元表达式 -->
+<div th:class="(${1==1}?'red':'green')" ></div>
+页面js中取后台的值：
+<!--<input  type="button" onclick="a(1)" value="点我"/><br />-->
+<a th:href="'javascript:a(\''+${testing}+'\');'">点我我</a>
+<script type="text/javascript" language="JavaScript">
+    function a(v) {
+        alert(v);
+    }
+</script>
+
+</body>
+</html>

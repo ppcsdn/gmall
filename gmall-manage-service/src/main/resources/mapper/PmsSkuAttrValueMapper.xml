@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atgg.gmall.manage.mapper.PmsSkuSaleAttrValueMapper">
+    <select id="selectSkuSaleAttrValueListBySpu" resultMap="selectSkuSaleAttrValueListBySpuMap">
+SELECT
+	si.*,
+	si.id si_id,
+	ssav.id ssav_id,
+	ssav.*
+FROM
+	pms_sku_info si,
+	pms_sku_sale_attr_value ssav
+WHERE
+	si.id = ssav.sku_id
+	AND si.product_id = #{spuId}
+</select>
+    <resultMap id="selectSkuSaleAttrValueListBySpuMap" type="com.atgg.gmall.bean.PmsSkuInfo" autoMapping="true">
+        <result property="id" column="si_id"></result>
+        <collection property="skuSaleAttrValueList" ofType="com.atgg.gmall.bean.PmsSkuSaleAttrValue" autoMapping="true">
+            <result property="id" column="ssav_id"></result>
+
+        </collection>
+    </resultMap>
+</mapper>
